@@ -2,6 +2,18 @@
 
 @section('title', $news->title)
 
+@section('open-graph')
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Semanario Loretano">
+<meta property="og:title" content="{{ $news->title }}">
+<meta property="og:description" content="{{ Str::limit($news->summary, 200) }}">
+<meta property="og:url" content="{{ url()->current() }}">
+@if($news->image)
+    <meta property="og:image" content="{{ asset('storage/' . $news->image) }}">
+    <meta property="og:image:alt" content="{{ $news->title }}">
+@endif
+@endsection
+
 @section('styles')
 <style>
     .news-content img {
