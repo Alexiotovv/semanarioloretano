@@ -71,7 +71,7 @@
         }
     }
 </style>
-@yield('styles')
+@yield('admin-styles')
 @endsection
 
 @section('content')
