@@ -19,7 +19,7 @@
     }
 
     .home-header-image {
-        max-height: 170px;
+        max-height: 230px;
         width: auto;
     }
 
