@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Header extends Model
 {
     protected $fillable = [
-        'title', 'subtitle', 'description', 'image'
+        'title', 'subtitle', 'description', 'image', 'navbar_logo'
     ];
 }

@@ -17,6 +17,17 @@
         overflow-wrap: anywhere;
         white-space: normal;
     }
+
+    .home-header-image {
+        max-height: 340px;
+        width: auto;
+    }
+
+    @media (max-width: 767.98px) {
+        .home-header-image {
+            max-height: 180px;
+        }
+    }
 </style>
 @endsection
 
@@ -31,9 +42,9 @@
                         <div class="col-md-4 text-center">
                             @if($header && $header->image)
                                 <img src="{{ asset('storage/' . $header->image) }}" 
-                                     class="img-fluid rounded" 
+                                      class="img-fluid rounded home-header-image"
                                      alt="{{ $header->title }}"
-                                     style="max-height: 150px; width: auto;">
+                                      >
                             @else
                                 <i class="bi bi-newspaper" style="font-size: 6rem; color: var(--primary-green);"></i>
                             @endif

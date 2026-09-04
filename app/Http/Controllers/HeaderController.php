@@ -23,6 +23,7 @@ class HeaderController extends Controller
             'subtitle' => 'nullable|string|max:255',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'navbar_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $header = Header::first() ?? new Header();
@@ -34,6 +35,13 @@ class HeaderController extends Controller
             }
             $imagePath = $request->file('image')->store('headers', 'public');
             $data['image'] = $imagePath;
+        }
+
+        if ($request->hasFile('navbar_logo')) {
+            if ($header->navbar_logo) {
+                Storage::disk('public')->delete($header->navbar_logo);
+            }
+            $data['navbar_logo'] = $request->file('navbar_logo')->store('headers', 'public');
         }
 
         $header->fill($data);

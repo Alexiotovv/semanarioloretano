@@ -222,8 +222,8 @@
                         ->orderBy('title')
                         ->get();
                 @endphp
-                @if($header && $header->image)
-                    <img src="{{ asset('storage/' . $header->image) }}" alt="{{ $header->title }}" class="d-inline-block align-text-top">
+                @if($header && $header->navbar_logo)
+                    <img src="{{ asset('storage/' . $header->navbar_logo) }}" alt="{{ $header->title }}" class="d-inline-block align-text-top">
                 @else
                     <i class="bi bi-newspaper" style="font-size: 2.5rem; color: white;"></i>
                 @endif

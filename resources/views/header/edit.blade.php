@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="image" class="form-label">Imagen del Encabezado</label>
+                            <label for="image" class="form-label">Imagen del encabezado principal</label>
                             @if($header && $header->image)
                                 <div class="mb-2">
                                     <img src="{{ asset('storage/' . $header->image) }}" 
@@ -62,6 +62,22 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <small class="text-muted">Formatos permitidos: JPEG, PNG, JPG, GIF. Máximo 2MB.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="navbar_logo" class="form-label">Logo del navbar</label>
+                            @if($header && $header->navbar_logo)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $header->navbar_logo) }}"
+                                         class="img-fluid rounded" style="max-height: 60px;" alt="Logo actual del navbar">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control @error('navbar_logo') is-invalid @enderror"
+                                   id="navbar_logo" name="navbar_logo" accept="image/*">
+                            @error('navbar_logo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="text-muted">Imagen independiente para el navbar. Formatos: JPEG, PNG, JPG, GIF. Máximo 2MB.</small>
                         </div>
 
                         <div class="d-flex justify-content-between">
