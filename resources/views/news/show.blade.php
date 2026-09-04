@@ -64,7 +64,7 @@
                             <img src="{{ asset('storage/' . $news->image) }}" 
                                  class="img-fluid rounded w-100" 
                                  alt="{{ $news->title }}" 
-                                 style="max-height: 450px; object-fit: cover;">
+                                 style="max-height: 450px; object-fit: contain;">
                         </div>
                     @endif
 
