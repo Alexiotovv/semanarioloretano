@@ -19,13 +19,33 @@
     }
 
     .home-header-image {
-        max-height: 340px;
+        max-height: 170px;
         width: auto;
+    }
+
+    .home-header-title {
+        font-size: 1.8rem;
+    }
+
+    .home-header-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .home-header-description {
+        font-size: 1rem;
     }
 
     @media (max-width: 767.98px) {
         .home-header-image {
-            max-height: 180px;
+            max-height: 90px;
+        }
+
+        .home-header-title {
+            font-size: 1.5rem;
+        }
+
+        .home-header-subtitle {
+            font-size: 1rem;
         }
     }
 </style>
@@ -37,7 +57,7 @@
     <div class="row mb-4">
         <div class="col-12">
             <div class="card shadow-sm border-0 bg-soft-green">
-                <div class="card-body p-4">
+                <div class="card-body p-3">
                     <div class="row align-items-center">
                         <div class="col-md-4 text-center">
                             @if($header && $header->image)
@@ -50,13 +70,13 @@
                             @endif
                         </div>
                         <div class="col-md-8">
-                            <h1 class="display-4 fw-bold" style="color: var(--primary-green);">
+                            <h1 class="home-header-title fw-bold" style="color: var(--primary-green);">
                                 {{ $header->title ?? 'Semanario Loretano' }}
                             </h1>
                             @if($header && $header->subtitle)
-                                <h4 class="text-muted">{{ $header->subtitle }}</h4>
+                                <h4 class="home-header-subtitle text-muted">{{ $header->subtitle }}</h4>
                             @endif
-                            <p class="lead mt-2">
+                            <p class="home-header-description mt-2 mb-0">
                                 {{ $header->description ?? 'Todas las noticias más relevantes de la ciudad de Iquitos' }}
                             </p>
                         </div>
@@ -69,6 +89,39 @@
     <div class="row g-4">
         <!-- Barra lateral izquierda - Novedades -->
         <div class="col-lg-3">
+            @foreach($sections as $section)
+                <section class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-soft-green border-0 d-flex justify-content-between align-items-center gap-2">
+                        <h5 class="mb-0"><i class="bi bi-collection"></i> {{ $section->title }}</h5>
+                        <a href="{{ route('sections.show', $section) }}" class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-eye"></i> Ver sección
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        @forelse($section->news as $news)
+                            <div class="news-card p-3 mb-3" onclick="window.location='{{ route('news.show', $news) }}'">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        @if($news->image)
+                                            <img src="{{ asset('storage/' . $news->image) }}" class="img-fluid rounded" alt="{{ $news->title }}" style="height: 110px; width: 100%; object-fit: cover;">
+                                        @else
+                                            <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 110px;"><i class="bi bi-newspaper text-muted" style="font-size: 2rem;"></i></div>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-8 home-news-content">
+                                        <h6 class="fw-bold">{{ $news->title }}</h6>
+                                        <p class="text-muted small mb-2">{{ Str::limit($news->summary, 110) }}</p>
+                                        <span class="badge bg-warning text-dark">{{ $news->published_at->diffForHumans() }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-muted mb-0">Aún no hay noticias publicadas en esta sección.</p>
+                        @endforelse
+                    </div>
+                </section>
+            @endforeach
+
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-soft-green border-0">
                     <h5 class="mb-0"><i class="bi bi-megaphone"></i> Novedades</h5>
@@ -116,38 +169,6 @@
                 </div>
             </div>
 
-            @foreach($sections as $section)
-                <section class="card shadow-sm border-0 mt-4">
-                    <div class="card-header bg-soft-green border-0 d-flex justify-content-between align-items-center gap-2">
-                        <h5 class="mb-0"><i class="bi bi-collection"></i> {{ $section->title }}</h5>
-                        <a href="{{ route('sections.show', $section) }}" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-eye"></i> Ver sección
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        @forelse($section->news as $news)
-                            <div class="news-card p-3 mb-3" onclick="window.location='{{ route('news.show', $news) }}'">
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        @if($news->image)
-                                            <img src="{{ asset('storage/' . $news->image) }}" class="img-fluid rounded" alt="{{ $news->title }}" style="height: 110px; width: 100%; object-fit: cover;">
-                                        @else
-                                            <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 110px;"><i class="bi bi-newspaper text-muted" style="font-size: 2rem;"></i></div>
-                                        @endif
-                                    </div>
-                                    <div class="col-md-8 home-news-content">
-                                        <h6 class="fw-bold">{{ $news->title }}</h6>
-                                        <p class="text-muted small mb-2">{{ Str::limit($news->summary, 110) }}</p>
-                                        <span class="badge bg-warning text-dark">{{ $news->published_at->diffForHumans() }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <p class="text-muted mb-0">Aún no hay noticias publicadas en esta sección.</p>
-                        @endforelse
-                    </div>
-                </section>
-            @endforeach
         </div>
 
         <!-- Sección principal - Noticias -->
