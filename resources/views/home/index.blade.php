@@ -103,7 +103,7 @@
                                 <div class="row g-3">
                                     <div class="col-md-4">
                                         @if($news->image)
-                                            <img src="{{ asset('storage/' . $news->image) }}" class="img-fluid rounded" alt="{{ $news->title }}" style="height: 110px; width: 100%; object-fit: cover;">
+                                            <img src="{{ asset('storage/' . $news->image) }}" class="img-fluid rounded" alt="{{ $news->title }}" style="height: 110px; width: 100%; object-fit: cover; object-position: top center;">
                                         @else
                                             <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 110px;"><i class="bi bi-newspaper text-muted" style="font-size: 2rem;"></i></div>
                                         @endif
@@ -184,7 +184,7 @@
                                 <div class="col-md-4">
                                     @if($news->image)
                                         <img src="{{ asset('storage/' . $news->image) }}" 
-                                             class="img-fluid rounded" alt="{{ $news->title }}" style="height: 120px; width: 100%; object-fit: cover;">
+                                             class="img-fluid rounded" alt="{{ $news->title }}" style="height: 120px; width: 100%; object-fit: cover; object-position: top center;">
                                     @else
                                         <img src="https://via.placeholder.com/300x200/235347/FFFFFF?text=Noticia" 
                                              class="img-fluid rounded" alt="Noticia" style="height: 120px; width: 100%; object-fit: cover;">

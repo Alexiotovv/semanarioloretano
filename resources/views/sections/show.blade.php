@@ -13,7 +13,7 @@
                     <div class="d-flex gap-3">
                         @if($news->image)
                             <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}"
-                                 class="rounded flex-shrink-0" style="width: 96px; height: 72px; object-fit: cover;">
+                                 class="rounded flex-shrink-0" style="width: 96px; height: 72px; object-fit: cover; object-position: top center;">
                         @else
                             <div class="bg-light rounded d-flex align-items-center justify-content-center flex-shrink-0"
                                  style="width: 96px; height: 72px;">

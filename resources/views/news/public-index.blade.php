@@ -41,7 +41,7 @@
                             <img src="{{ asset('storage/' . $item->image) }}"
                                  class="card-img-top"
                                  alt="{{ $item->title }}"
-                                 style="height: 210px; object-fit: cover;">
+                                 style="height: 210px; object-fit: cover; object-position: top center;">
                         @else
                             <div class="d-flex align-items-center justify-content-center bg-light text-muted"
                                  style="height: 210px;">
