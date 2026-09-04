@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,9 +26,12 @@ class NewsController extends Controller
         return view('news.public-index', compact('news'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('news.create');
+        return view('news.create', [
+            'sections' => Section::query()->orderBy('title')->get(),
+            'selectedSectionId' => $request->integer('section_id') ?: null,
+        ]);
     }
 
     public function store(Request $request)
@@ -37,6 +41,7 @@ class NewsController extends Controller
             'summary' => 'required|string',
             'content' => 'required|string',
             'category' => 'nullable|string|max:100',
+            'section_id' => 'nullable|exists:sections,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_featured' => 'boolean',
         ]);
@@ -61,7 +66,10 @@ class NewsController extends Controller
 
     public function edit(News $news)
     {
-        return view('news.edit', compact('news'));
+        return view('news.edit', [
+            'news' => $news,
+            'sections' => Section::query()->orderBy('title')->get(),
+        ]);
     }
 
     public function update(Request $request, News $news)
@@ -71,6 +79,7 @@ class NewsController extends Controller
             'summary' => 'required|string',
             'content' => 'required|string',
             'category' => 'nullable|string|max:100',
+            'section_id' => 'nullable|exists:sections,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_featured' => 'boolean',
         ]);

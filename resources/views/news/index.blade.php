@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Gestionar Noticias')
 
-@section('content')
+@section('admin-content')
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4><i class="bi bi-newspaper"></i> Gestionar Noticias</h4>

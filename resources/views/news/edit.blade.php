@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Editar Noticia')
 
-@section('content')
+@section('admin-content')
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -33,6 +33,19 @@
                             <input type="text" class="form-control @error('category') is-invalid @enderror" 
                                    id="category" name="category" value="{{ old('category', $news->category) }}">
                             @error('category')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_id" class="form-label">Sección</label>
+                            <select class="form-select @error('section_id') is-invalid @enderror" id="section_id" name="section_id">
+                                <option value="">Sin sección</option>
+                                @foreach($sections as $section)
+                                    <option value="{{ $section->id }}" {{ old('section_id', $news->section_id) == $section->id ? 'selected' : '' }}>{{ $section->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('section_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

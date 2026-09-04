@@ -218,6 +218,9 @@
                         ->orderBy('published_at', 'desc')
                         ->take(5)
                         ->get();
+                    $navbarSections = App\Models\Section::where('show_in_nav', true)
+                        ->orderBy('title')
+                        ->get();
                 @endphp
                 @if($header && $header->image)
                     <img src="{{ asset('storage/' . $header->image) }}" alt="{{ $header->title }}" class="d-inline-block align-text-top">
@@ -236,6 +239,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('news.public') }}">
+                            <i class="bi bi-eye"></i> Noticias
+                        </a>
+                    </li>
+                    @foreach($navbarSections as $navbarSection)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('sections.show', $navbarSection) }}">
+                                {{ $navbarSection->title }}
+                            </a>
+                        </li>
+                    @endforeach
                     @auth
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard') }}">

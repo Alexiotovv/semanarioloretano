@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Advertisement;
 use App\Models\Header;
+use App\Models\Section;
 
 class HomeController extends Controller
 {
@@ -26,13 +27,19 @@ class HomeController extends Controller
             ->where('is_active', true)
             ->orderBy('order')
             ->get();
+        $sections = Section::with(['news' => fn ($query) => $query->whereNotNull('published_at')
+                ->latest('published_at')
+                ->limit(3)])
+            ->orderBy('title')
+            ->get();
 
         return view('home.index', compact(
             'header', 
             'featuredNews', 
             'latestNews', 
             'sidebarAds', 
-            'bannerAds'
+            'bannerAds',
+            'sections'
         ));
     }
 }

@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Gestionar Publicidad')
 
-@section('content')
+@section('admin-content')
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4><i class="bi bi-image"></i> Gestionar Publicidad</h4>

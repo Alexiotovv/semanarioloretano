@@ -104,6 +104,39 @@
                     </div>
                 </div>
             </div>
+
+            @foreach($sections as $section)
+                <section class="card shadow-sm border-0 mt-4">
+                    <div class="card-header bg-soft-green border-0 d-flex justify-content-between align-items-center gap-2">
+                        <h5 class="mb-0"><i class="bi bi-collection"></i> {{ $section->title }}</h5>
+                        <a href="{{ route('sections.show', $section) }}" class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-eye"></i> Ver sección
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        @forelse($section->news as $news)
+                            <div class="news-card p-3 mb-3" onclick="window.location='{{ route('news.show', $news) }}'">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        @if($news->image)
+                                            <img src="{{ asset('storage/' . $news->image) }}" class="img-fluid rounded" alt="{{ $news->title }}" style="height: 110px; width: 100%; object-fit: cover;">
+                                        @else
+                                            <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 110px;"><i class="bi bi-newspaper text-muted" style="font-size: 2rem;"></i></div>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-8 home-news-content">
+                                        <h6 class="fw-bold">{{ $news->title }}</h6>
+                                        <p class="text-muted small mb-2">{{ Str::limit($news->summary, 110) }}</p>
+                                        <span class="badge bg-warning text-dark">{{ $news->published_at->diffForHumans() }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-muted mb-0">Aún no hay noticias publicadas en esta sección.</p>
+                        @endforelse
+                    </div>
+                </section>
+            @endforeach
         </div>
 
         <!-- Sección principal - Noticias -->
