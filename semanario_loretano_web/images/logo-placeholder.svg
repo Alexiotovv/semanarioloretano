@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="350" viewBox="0 0 600 350">
+<rect width="600" height="350" rx="30" fill="#f8faf7"/>
+<circle cx="150" cy="170" r="105" fill="#d8e7c8" stroke="#0b4d37" stroke-width="8"/>
+<path d="M90 210 Q150 90 210 210" fill="none" stroke="#4e8e32" stroke-width="18"/>
+<path d="M115 205 L115 135 L185 135 L185 205" fill="#d7b77a" stroke="#7b5b35" stroke-width="5"/>
+<path d="M95 135 L150 90 L205 135" fill="#b78b50" stroke="#7b5b35" stroke-width="5"/>
+<path d="M215 210 Q280 165 330 205" fill="none" stroke="#16709a" stroke-width="12"/>
+<text x="300" y="105" text-anchor="middle" font-family="Georgia" font-weight="bold" font-size="30" fill="#07513b">SEMANARIO</text>
+<text x="300" y="260" text-anchor="middle" font-family="Georgia" font-weight="bold" font-size="48" fill="#c52616">LORETANO</text>
+<text x="300" y="305" text-anchor="middle" font-family="Arial" font-size="15" fill="#07513b">REEMPLAZA ESTE ARCHIVO CON TU LOGO REAL</text>
+</svg>

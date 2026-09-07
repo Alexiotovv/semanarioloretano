@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Semanario Loretano - Noticias, análisis y actualidad de Loreto e Iquitos.">
+  <title>Semanario Loretano | Noticias de Loreto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="brand">
+        <img src="images/logo.png" alt="Logo Semanario Loretano" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <h1>SEMANARIO LORETANO</h1>
+          <p>NOTICIAS · ANÁLISIS · REALIDAD · NUESTRA GENTE</p>
+          <span>Información con identidad amazónica</span>
+          <small>Todas las noticias más relevantes de la ciudad de Iquitos y la región Loreto.</small>
+        </div>
+      </a>
+
+      <div class="header-photo">
+        <div class="header-photo-overlay">
+          <strong>Loreto,</strong>
+          <em>tierra de oportunidades</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENÚ -->
+    <nav class="main-nav">
+      <div class="nav-inner">
+        <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+        <div class="nav-links">
+          <a class="active" href="#">⌂ &nbsp; INICIO</a>
+          <a href="#loreto">LORETO</a>
+          <a href="#politica">POLÍTICA</a>
+          <a href="#economia">ECONOMÍA</a>
+          <a href="#sociedad">SOCIEDAD</a>
+          <a href="#ambiente">MEDIO AMBIENTE</a>
+          <a href="#cultura">CULTURA</a>
+          <a href="#deportes">DEPORTES</a>
+          <a href="#tecnologia">TECNOLOGÍA</a>
+          <a href="#opinion">OPINIÓN</a>
+        </div>
+        <form class="search-box">
+          <input type="search" placeholder="Buscar noticias..." aria-label="Buscar noticias">
+          <button type="submit">⌕</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-container">
+
+    <!-- COLUMNA IZQUIERDA -->
+    <aside class="left-column">
+
+      <section class="side-card analysis-card" id="opinion">
+        <div class="section-title green">
+          <span>▣</span> ANALIZANDO <b>›</b>
+        </div>
+        <article class="mini-article">
+          <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=500&q=80" alt="Amazonía">
+          <div>
+            <h3>¿Desarrollo o extractivismo?</h3>
+            <p>Un análisis sobre el futuro de Loreto y el verdadero impacto de las inversiones en la Amazonía.</p>
+            <a href="#">Leer más →</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="side-card" id="tecnologia">
+        <div class="section-title blue">
+          <span>▣</span> TECNOLOGÍA <b>›</b>
+        </div>
+        <article class="mini-article">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=80" alt="Tecnología">
+          <div>
+            <h3>Conectividad para la Amazonía</h3>
+            <p>Cómo la tecnología puede cerrar brechas y generar oportunidades en Loreto.</p>
+            <a href="#">Leer más →</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="weather-card">
+        <div class="section-title orange">
+          <span>☀</span> EL TIEMPO EN IQUITOS <b>›</b>
+        </div>
+        <div class="weather-main">
+          <div class="weather-icon">⛅</div>
+          <div class="temperature">32°C</div>
+          <div class="weather-details">
+            <strong>Parcialmente nublado</strong>
+            <span>Humedad: 78%</span>
+            <span>Viento: 8 km/h</span>
+          </div>
+        </div>
+        <div class="forecast">
+          <div><b>Hoy</b><span>⛅</span><strong>32°/24°</strong></div>
+          <div><b>Mañana</b><span>☀️</span><strong>33°/24°</strong></div>
+          <div><b>Sáb</b><span>🌦️</span><strong>32°/24°</strong></div>
+          <div><b>Dom</b><span>🌤️</span><strong>31°/23°</strong></div>
+        </div>
+        <small class="weather-note">* Datos demostrativos. Luego puedes conectar una API meteorológica.</small>
+      </section>
+
+    </aside>
+
+    <!-- PORTADA CENTRAL -->
+    <section class="main-column">
+
+      <article class="cover-story">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85" alt="Portada de la semana">
+        <div class="cover-overlay"></div>
+        <span class="cover-label">PORTADA DE LA SEMANA</span>
+
+        <div class="cover-content">
+          <h2>IQUITOS CAMBIA SU ROSTRO: NUEVOS PROYECTOS PARA EL DESARROLLO REGIONAL</h2>
+          <p>Obras de infraestructura, mejoras en transporte fluvial y estrategias de conectividad buscan impulsar el crecimiento de Loreto. Analizamos los avances, desafíos y lo que viene para la región.</p>
+          <a class="read-button" href="#">Leer artículo completo →</a>
+        </div>
+
+        <div class="slider-dots" aria-label="Portadas">
+          <button class="selected"></button><button></button><button></button><button></button><button></button>
+        </div>
+      </article>
+
+      <!-- Noticias debajo de la portada -->
+      <section class="latest-grid" id="sociedad">
+        <div class="content-heading">
+          <h2>LO ÚLTIMO</h2>
+          <a href="#">Ver todas →</a>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <img src="https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=700&q=80" alt="Noticias de Loreto">
+            <div>
+              <span>LORETO</span>
+              <h3>Inundaciones afectan a comunidades del río Nanay</h3>
+              <p>Las familias solicitan atención y medidas preventivas ante el incremento del nivel de los ríos.</p>
+              <a href="#">Leer noticia →</a>
+            </div>
+          </article>
+
+          <article class="news-card" id="economia">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=700&q=80" alt="Obras">
+            <div>
+              <span>ECONOMÍA</span>
+              <h3>Obras paralizadas generan preocupación en Belén</h3>
+              <p>Vecinos piden explicaciones y una fecha clara para la reanudación de los trabajos.</p>
+              <a href="#">Leer noticia →</a>
+            </div>
+          </article>
+
+          <article class="news-card" id="politica">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80" alt="Política">
+            <div>
+              <span>POLÍTICA</span>
+              <h3>Las decisiones que marcarán el futuro de Loreto</h3>
+              <p>Una mirada a los principales temas que estarán en el centro del debate regional.</p>
+              <a href="#">Leer noticia →</a>
+            </div>
+          </article>
+
+          <article class="news-card" id="cultura">
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=80" alt="Cultura amazónica">
+            <div>
+              <span>CULTURA</span>
+              <h3>La identidad amazónica que debemos preservar</h3>
+              <p>Tradiciones, costumbres y personajes que forman parte de la memoria loretana.</p>
+              <a href="#">Leer noticia →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <!-- COLUMNA DERECHA -->
+    <aside class="right-column">
+      <section class="side-card latest-card">
+        <div class="right-title">
+          <h2>▣ &nbsp; ÚLTIMAS NOTICIAS</h2>
+          <a href="#">Ver todas →</a>
+        </div>
+
+        <article class="right-news">
+          <img src="https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=300&q=80" alt="">
+          <div><h3>Inundaciones afectan comunidades en el río Nanay</h3><small>4 de septiembre de 2026</small></div>
+        </article>
+        <article class="right-news">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=300&q=80" alt="">
+          <div><h3>Obras paralizadas en Belén generan malestar en la población</h3><small>3 de septiembre de 2026</small></div>
+        </article>
+        <article class="right-news">
+          <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=300&q=80" alt="">
+          <div><h3>Transporte fluvial en crisis: usuarios exigen soluciones</h3><small>2 de septiembre de 2026</small></div>
+        </article>
+        <article class="right-news">
+          <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=300&q=80" alt="">
+          <div><h3>Escuelas de Loreto aún esperan mejores condiciones</h3><small>1 de septiembre de 2026</small></div>
+        </article>
+        <article class="right-news">
+          <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=300&q=80" alt="">
+          <div><h3>Loreto refuerza acciones para proteger su biodiversidad</h3><small>31 de agosto de 2026</small></div>
+        </article>
+      </section>
+
+      <section class="advertising">
+        <div class="ad-icon">📣</div>
+        <h2>TU PUBLICIDAD AQUÍ</h2>
+        <p>Llega a miles de lectores en toda la región.</p>
+        <a href="mailto:publicidad@semanarioloretano.pe">Contáctanos</a>
+      </section>
+    </aside>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer">
+    <p>© 2026 Semanario Loretano. Todos los derechos reservados.</p>
+    <div class="social">Síguenos en:
+      <a href="#">f</a><a href="#">◎</a><a href="#">▶</a>
+    </div>
+    <p>Loreto en cada historia</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
