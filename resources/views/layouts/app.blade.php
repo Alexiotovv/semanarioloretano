@@ -32,49 +32,20 @@
             padding: 10px 0;
         }
         
-        .navbar-custom .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            color: white !important;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .navbar-custom .navbar-nav {
+            width: 100%;
         }
-        
-        .navbar-brand img {
-            height: 50px;
-            width: auto;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-        
-        .navbar-brand .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-        
-        .navbar-brand .brand-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .navbar-brand .brand-subtitle {
-            font-size: 0.75rem;
-            font-weight: 400;
-            opacity: 0.8;
-            font-family: 'Open Sans', sans-serif;
-        }
-        
+
         .navbar-custom .nav-link {
             color: rgba(255,255,255,0.9) !important;
-            transition: all 0.3s;
+            transition: background-color 0.2s, color 0.2s;
+            padding: 10px 16px !important;
+            border-radius: 4px;
         }
         
         .navbar-custom .nav-link:hover {
+            background-color: #90c25a;
             color: white !important;
-            transform: translateY(-2px);
         }
         
         .btn-gold {
@@ -168,6 +139,7 @@
         .navbar-news-ticker {
             min-width: 0;
             max-width: 340px;
+            margin-left: auto;
             color: rgba(255,255,255,0.9);
         }
 
@@ -204,42 +176,131 @@
                 animation: none;
             }
         }
+
+        .site-header-band {
+            position: relative;
+            min-height: 230px;
+            overflow: hidden;
+            border-bottom: 1px solid #e2e6e2;
+        }
+
+        .site-header-band .header-band-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .site-header-band .header-band-inner {
+            position: relative;
+            max-width: 1140px;
+            margin: auto;
+            height: 100%;
+            min-height: 230px;
+            padding: 24px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .site-header-band .header-band-inner {
+            gap: 18px;
+        }
+
+        .site-header-band .header-band-logo {
+            height: 70px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .site-header-band .header-band-text {
+            max-width: 640px;
+        }
+
+        .site-header-band h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 3vw, 34px);
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0,0,0,.6);
+            margin: 0;
+        }
+
+        .site-header-band .header-band-subtitle {
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0,0,0,.6);
+            margin-top: 6px;
+        }
+
+        .site-header-band .header-band-description {
+            font-size: 0.9rem;
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0,0,0,.6);
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 767.98px) {
+            .site-header-band {
+                min-height: 190px;
+            }
+        }
     </style>
     
     @yield('styles')
 </head>
 <body>
+    @php
+        $header = App\Models\Header::first();
+        $latestNavbarNews = App\Models\News::whereNotNull('published_at')
+            ->orderBy('published_at', 'desc')
+            ->take(5)
+            ->get();
+        $navbarSections = App\Models\Section::where('show_in_nav', true)
+            ->orderBy('title')
+            ->get();
+    @endphp
+
+    <!-- Encabezado principal -->
+    @guest
+        <header class="site-header-band">
+            @if($header && $header->image)
+                <img src="{{ asset('storage/' . $header->image) }}" alt="{{ $header->title }}" class="header-band-image">
+            @endif
+            <div class="header-band-inner">
+                @if($header && $header->navbar_logo)
+                    <img src="{{ asset('storage/' . $header->navbar_logo) }}" alt="{{ $header->title }}" class="header-band-logo">
+                @endif
+                <div class="header-band-text">
+                    <h1>{{ $header->title ?? 'Semanario Loretano' }}</h1>
+                    @if($header && $header->subtitle)
+                        <p class="header-band-subtitle">{{ $header->subtitle }}</p>
+                    @endif
+                    <p class="header-band-description">
+                        {{ $header->description ?? 'Todas las noticias más relevantes de la ciudad de Iquitos y la región Loreto.' }}
+                    </p>
+                </div>
+            </div>
+        </header>
+    @endguest
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                @php
-                    $header = App\Models\Header::first();
-                    $latestNavbarNews = App\Models\News::whereNotNull('published_at')
-                        ->orderBy('published_at', 'desc')
-                        ->take(5)
-                        ->get();
-                    $navbarSections = App\Models\Section::where('show_in_nav', true)
-                        ->orderBy('title')
-                        ->get();
-                @endphp
-                @if($header && $header->navbar_logo)
-                    <img src="{{ asset('storage/' . $header->navbar_logo) }}" alt="{{ $header->title }}" class="d-inline-block align-text-top">
-                @else
-                    <i class="bi bi-newspaper" style="font-size: 2.5rem; color: white;"></i>
-                @endif
-                <div class="brand-text">
-                    <span class="brand-title">{{ $header->title ?? 'Semanario Loretano' }}</span>
-                    @if($header && $header->subtitle)
-                        <span class="brand-subtitle">{{ $header->subtitle }}</span>
-                    @endif
-                </div>
-            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">
+                            <i class="bi bi-house"></i> Inicio
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('news.public') }}">
                             <i class="bi bi-eye"></i> Noticias
