@@ -29,10 +29,11 @@ class AdvertisementController extends Controller
             'link' => 'nullable|url',
             'position' => 'required|in:sidebar,banner,footer',
             'is_active' => 'boolean',
-            'order' => 'integer|default:0',
+            'order' => 'nullable|integer',
         ]);
 
         $data = $request->all();
+        $data['order'] = $request->input('order', 0);
         
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('advertisements', 'public');
@@ -59,10 +60,11 @@ class AdvertisementController extends Controller
             'link' => 'nullable|url',
             'position' => 'required|in:sidebar,banner,footer',
             'is_active' => 'boolean',
-            'order' => 'integer|default:0',
+            'order' => 'nullable|integer',
         ]);
 
         $data = $request->all();
+        $data['order'] = $request->input('order', 0);
         
         if ($request->hasFile('image')) {
             if ($advertisement->image) {
