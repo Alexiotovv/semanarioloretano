@@ -4,61 +4,8 @@
 
 @section('styles')
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+@include('partials.sidebar-styles')
 <style>
-    .sl-page-container {
-        max-width: 1500px;
-        margin: 16px auto;
-        display: grid;
-        grid-template-columns: 320px minmax(0, 1fr) 350px;
-        gap: 16px;
-        padding: 0 12px;
-        font-family: "Montserrat", Arial, sans-serif;
-    }
-
-    .sl-left-column, .sl-right-column { display: flex; flex-direction: column; gap: 16px; }
-
-    .sl-side-card {
-        background: white;
-        border: 1px solid #dfe4df;
-        box-shadow: 0 2px 10px rgba(0,0,0,.05);
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .sl-section-title {
-        color: white;
-        padding: 13px 16px;
-        font-size: 17px;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .sl-section-title b { margin-left: auto; font-size: 26px; }
-    .sl-section-title.green { background: linear-gradient(90deg, #247d18, #116209); }
-    .sl-section-title.blue { background: linear-gradient(90deg, #1773a0, #14567b); }
-
-    .sl-mini-article {
-        display: grid;
-        grid-template-columns: 105px 1fr;
-        gap: 13px;
-        padding: 13px;
-    }
-
-    .sl-mini-article img {
-        width: 105px;
-        height: 125px;
-        object-fit: cover;
-        border-radius: 4px;
-    }
-
-    .sl-mini-article h3 { font-size: 17px; line-height: 1.15; margin-bottom: 7px; }
-    .sl-mini-article p { color: #52615b; font-size: 13px; }
-    .sl-mini-article a { display: inline-block; margin-top: 9px; color: #14752d; font-weight: 800; font-size: 13px; }
-
-    .sl-main-column { min-width: 0; }
-
     .sl-cover-story {
         position: relative;
         min-height: 500px;
@@ -134,7 +81,7 @@
         border-radius: 5px;
     }
 
-    .sl-content-heading, .sl-right-title {
+    .sl-content-heading {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -143,8 +90,8 @@
         margin-bottom: 14px;
     }
 
-    .sl-content-heading h2, .sl-right-title h2 { font-size: 19px; margin: 0; }
-    .sl-content-heading a, .sl-right-title a { color: #0c6545; font-size: 12px; font-weight: 800; text-decoration: none; }
+    .sl-content-heading h2 { font-size: 19px; margin: 0; }
+    .sl-content-heading a { color: #0c6545; font-size: 12px; font-weight: 800; text-decoration: none; }
 
     .sl-news-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
@@ -163,57 +110,11 @@
     .sl-news-card p { font-size: 11px; color: #65716c; }
     .sl-news-card a { display: block; margin-top: 5px; color: #0c6545; font-size: 11px; font-weight: 800; text-decoration: none; }
 
-    .sl-right-title { padding: 5px 4px 10px; }
-    .sl-right-title h2 { color: #17231f; }
-
-    .sl-right-news {
-        display: grid;
-        grid-template-columns: 100px 1fr;
-        gap: 12px;
-        padding: 11px 4px;
-        border-bottom: 1px solid #e4e7e5;
-        cursor: pointer;
-    }
-
-    .sl-right-news img { width: 100px; height: 72px; object-fit: cover; border-radius: 4px; }
-    .sl-right-news h3 { font-size: 13px; line-height: 1.2; margin: 0; }
-    .sl-right-news small { display: block; margin-top: 5px; color: #727b77; font-size: 9px; }
-
-    .sl-latest-card { padding: 10px 12px; }
-
-    .sl-advertising {
-        background: linear-gradient(135deg, #e2f3e7, #c9e3d0);
-        border-radius: 5px;
-        padding: 22px;
-        text-align: center;
-        color: #064832;
-        border: 1px solid #b4d5bf;
-    }
-
-    .sl-advertising img { max-width: 100%; border-radius: 4px; }
-    .sl-advertising .sl-ad-icon { font-size: 35px; }
-    .sl-advertising h2 { font-size: 18px; margin: 5px 0; }
-    .sl-advertising p { font-size: 12px; margin-bottom: 14px; }
-    .sl-advertising a {
-        display: inline-block;
-        background: #003d2b;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 4px;
-        font-weight: 800;
-        font-size: 13px;
-        text-decoration: none;
-    }
-
     @media (max-width: 1150px) {
-        .sl-page-container { grid-template-columns: 250px minmax(0, 1fr); }
-        .sl-right-column { display: none; }
         .sl-cover-story { min-height: 420px; }
     }
 
     @media (max-width: 800px) {
-        .sl-page-container { display: block; padding: 0 8px; }
-        .sl-left-column, .sl-main-column { margin-bottom: 16px; }
         .sl-cover-story { min-height: 380px; }
         .sl-cover-content { left: 18px; right: 18px; bottom: 25px; }
         .sl-news-grid { grid-template-columns: 1fr; }
@@ -223,8 +124,6 @@
 
 @section('content')
 @php
-    $analysisSection = $sections->first(fn ($section) => str_contains(mb_strtolower($section->title), 'anali'));
-    $techSection = $sections->first(fn ($section) => str_contains(mb_strtolower($section->title), 'tecno'));
     $coverNews = $featuredNews->first() ?? $latestNews->first();
     $gridNews = $latestNews->reject(fn ($news) => $coverNews && $news->id === $coverNews->id)->take(4);
 @endphp
@@ -232,51 +131,7 @@
 <div class="sl-page-container">
 
     <!-- COLUMNA IZQUIERDA -->
-    <aside class="sl-left-column">
-        @if($analysisSection && $analysisSection->news->isNotEmpty())
-            @php($analysisNews = $analysisSection->news->first())
-            <section class="sl-side-card">
-                <div class="sl-section-title green">
-                    <span>▣</span> ANALIZANDO
-                    <a href="{{ route('sections.show', $analysisSection) }}" style="color:white;"><b>›</b></a>
-                </div>
-                <article class="sl-mini-article">
-                    @if($analysisNews->image)
-                        <img src="{{ asset('storage/' . $analysisNews->image) }}" alt="{{ $analysisNews->title }}">
-                    @else
-                        <img src="https://via.placeholder.com/210x250/0c6545/FFFFFF?text=Analisis" alt="{{ $analysisNews->title }}">
-                    @endif
-                    <div>
-                        <h3>{{ $analysisNews->title }}</h3>
-                        <p>{{ Str::limit($analysisNews->summary, 100) }}</p>
-                        <a href="{{ route('news.show', $analysisNews) }}">Leer más →</a>
-                    </div>
-                </article>
-            </section>
-        @endif
-
-        @if($techSection && $techSection->news->isNotEmpty())
-            @php($techNews = $techSection->news->first())
-            <section class="sl-side-card">
-                <div class="sl-section-title blue">
-                    <span>▣</span> TECNOLOGÍA
-                    <a href="{{ route('sections.show', $techSection) }}" style="color:white;"><b>›</b></a>
-                </div>
-                <article class="sl-mini-article">
-                    @if($techNews->image)
-                        <img src="{{ asset('storage/' . $techNews->image) }}" alt="{{ $techNews->title }}">
-                    @else
-                        <img src="https://via.placeholder.com/210x250/17648e/FFFFFF?text=Tecnologia" alt="{{ $techNews->title }}">
-                    @endif
-                    <div>
-                        <h3>{{ $techNews->title }}</h3>
-                        <p>{{ Str::limit($techNews->summary, 100) }}</p>
-                        <a href="{{ route('news.show', $techNews) }}">Leer más →</a>
-                    </div>
-                </article>
-            </section>
-        @endif
-    </aside>
+    @include('partials.sidebar-left')
 
     <!-- PORTADA CENTRAL -->
     <section class="sl-main-column">
@@ -329,60 +184,10 @@
     </section>
 
     <!-- COLUMNA DERECHA -->
-    <aside class="sl-right-column">
-        <section class="sl-side-card sl-latest-card">
-            <div class="sl-right-title">
-                <h2>▣ &nbsp; ÚLTIMAS NOTICIAS</h2>
-                <a href="{{ route('news.public') }}">Ver todas →</a>
-            </div>
-
-            @forelse($latestNews as $news)
-                <article class="sl-right-news" onclick="window.location='{{ route('news.show', $news) }}'">
-                    @if($news->image)
-                        <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}">
-                    @else
-                        <img src="https://via.placeholder.com/200x150/235347/FFFFFF?text=Noticia" alt="{{ $news->title }}">
-                    @endif
-                    <div>
-                        <h3>{{ $news->title }}</h3>
-                        <small>{{ $news->published_at->translatedFormat('d \d\e F \d\e Y') }}</small>
-                    </div>
-                </article>
-            @empty
-                <p class="text-muted mb-0">Aún no hay noticias publicadas.</p>
-            @endforelse
-        </section>
-
-        @forelse($sidebarAds as $ad)
-            <section class="sl-advertising">
-                @if($ad->link)
-                    <a href="{{ $ad->link }}" target="_blank">
-                        @if($ad->image)
-                            <img src="{{ asset('storage/' . $ad->image) }}" alt="{{ $ad->title }}">
-                        @else
-                            <img src="https://via.placeholder.com/300x200/e67e22/FFFFFF?text={{ urlencode($ad->title) }}" alt="{{ $ad->title }}">
-                        @endif
-                    </a>
-                @else
-                    @if($ad->image)
-                        <img src="{{ asset('storage/' . $ad->image) }}" alt="{{ $ad->title }}">
-                    @else
-                        <img src="https://via.placeholder.com/300x200/e67e22/FFFFFF?text={{ urlencode($ad->title) }}" alt="{{ $ad->title }}">
-                    @endif
-                @endif
-                <p class="mt-2 mb-0 small">{{ $ad->description ?? $ad->title }}</p>
-            </section>
-        @empty
-            <section class="sl-advertising">
-                <div class="sl-ad-icon">📣</div>
-                <h2>TU PUBLICIDAD AQUÍ</h2>
-                <p>Llega a miles de lectores en toda la región.</p>
-                <a href="mailto:publicidad@semanarioloretano.pe">Contáctanos</a>
-            </section>
-        @endforelse
-    </aside>
+    @include('partials.sidebar-right')
 
 </div>
+
 
 <!-- PIE DE PÁGINA -->
 <footer class="mt-4 py-3 rounded" style="background: #003d2b; color: white;">

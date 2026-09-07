@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\News;
 use App\Models\Section;
 use Illuminate\Http\Request;
@@ -61,7 +62,24 @@ class NewsController extends Controller
 
     public function show(News $news)
     {
-        return view('news.show', compact('news'));
+        $sections = Section::with(['news' => fn ($query) => $query->whereNotNull('published_at')
+                ->latest('published_at')
+                ->limit(3)])
+            ->orderBy('title')
+            ->get();
+
+        $latestNews = News::whereNotNull('published_at')
+            ->where('id', '!=', $news->id)
+            ->orderBy('published_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $sidebarAds = Advertisement::where('position', 'sidebar')
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get();
+
+        return view('news.show', compact('news', 'sections', 'latestNews', 'sidebarAds'));
     }
 
     public function edit(News $news)
