@@ -27,7 +27,7 @@
         }
         
         .navbar-custom {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            background: #003d2b;
             box-shadow: 0 2px 15px rgba(0,0,0,0.2);
             padding: 10px 0;
         }
