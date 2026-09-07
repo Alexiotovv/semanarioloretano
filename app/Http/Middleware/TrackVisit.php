@@ -13,7 +13,7 @@ class TrackVisit
     {
         $response = $next($request);
 
-        if ($this->shouldTrack($request, $response)) {
+        if ($this->shouldTrack($request, $response) && ! $this->alreadyVisitedToday($request)) {
             Visit::create([
                 'ip_address' => $request->ip(),
                 'url' => $request->path(),
@@ -26,6 +26,14 @@ class TrackVisit
         }
 
         return $response;
+    }
+
+    private function alreadyVisitedToday(Request $request): bool
+    {
+        return Visit::query()
+            ->where('ip_address', $request->ip())
+            ->whereDate('visited_at', today())
+            ->exists();
     }
 
     private function shouldTrack(Request $request, Response $response): bool
