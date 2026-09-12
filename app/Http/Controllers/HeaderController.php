@@ -23,25 +23,22 @@ class HeaderController extends Controller
             'subtitle' => 'nullable|string|max:255',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'navbar_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'navbar_logo_height' => 'nullable|integer|min:20|max:300',
         ]);
 
         $header = Header::first() ?? new Header();
         $data = $request->all();
-        
-        if ($request->hasFile('image')) {
-            if ($header->image) {
-                Storage::disk('public')->delete($header->image);
-            }
-            $imagePath = $request->file('image')->store('headers', 'public');
-            $data['image'] = $imagePath;
-        }
 
-        if ($request->hasFile('navbar_logo')) {
-            if ($header->navbar_logo) {
-                Storage::disk('public')->delete($header->navbar_logo);
+        foreach (['image', 'image_2', 'image_3', 'navbar_logo'] as $field) {
+            if ($request->hasFile($field)) {
+                if ($header->$field) {
+                    Storage::disk('public')->delete($header->$field);
+                }
+                $data[$field] = $request->file($field)->store('headers', 'public');
             }
-            $data['navbar_logo'] = $request->file('navbar_logo')->store('headers', 'public');
         }
 
         $header->fill($data);

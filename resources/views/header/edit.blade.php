@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="image" class="form-label">Imagen del encabezado principal</label>
+                            <label for="image" class="form-label">Imagen del encabezado principal (1 de 3)</label>
                             @if($header && $header->image)
                                 <div class="mb-2">
                                     <img src="{{ asset('storage/' . $header->image) }}" 
@@ -62,6 +62,38 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <small class="text-muted">Formatos permitidos: JPEG, PNG, JPG, GIF. Máximo 2MB.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image_2" class="form-label">Imagen del encabezado (2 de 3)</label>
+                            @if($header && $header->image_2)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $header->image_2) }}" 
+                                         class="img-fluid rounded" style="max-height: 100px;" alt="Header Image 2">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control @error('image_2') is-invalid @enderror" 
+                                   id="image_2" name="image_2" accept="image/*">
+                            @error('image_2')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="text-muted">Formatos permitidos: JPEG, PNG, JPG, GIF. Máximo 2MB.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image_3" class="form-label">Imagen del encabezado (3 de 3)</label>
+                            @if($header && $header->image_3)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $header->image_3) }}" 
+                                         class="img-fluid rounded" style="max-height: 100px;" alt="Header Image 3">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control @error('image_3') is-invalid @enderror" 
+                                   id="image_3" name="image_3" accept="image/*">
+                            @error('image_3')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="text-muted">Las 3 imágenes rotan automáticamente en el encabezado. Formatos: JPEG, PNG, JPG, GIF. Máximo 2MB.</small>
                         </div>
 
                         <div class="mb-3">
@@ -78,6 +110,17 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <small class="text-muted">Imagen independiente para el navbar. Formatos: JPEG, PNG, JPG, GIF. Máximo 2MB.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="navbar_logo_height" class="form-label">Tamaño del logo (alto en píxeles)</label>
+                            <input type="number" class="form-control @error('navbar_logo_height') is-invalid @enderror"
+                                   id="navbar_logo_height" name="navbar_logo_height" min="20" max="300"
+                                   value="{{ old('navbar_logo_height', $header->navbar_logo_height ?? 70) }}">
+                            @error('navbar_logo_height')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="text-muted">Define la altura del logo en el encabezado (entre 20 y 300 px).</small>
                         </div>
 
                         <div class="d-flex justify-content-between">

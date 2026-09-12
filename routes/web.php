@@ -8,12 +8,19 @@ use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\PageController;
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Listado público de noticias
 Route::get('/noticias', [NewsController::class, 'publicIndex'])->name('news.public');
+
+// Páginas informativas
+Route::get('/contactenos', [PageController::class, 'contact'])->name('pages.contact');
+Route::get('/acerca-de-nosotros', [PageController::class, 'about'])->name('pages.about');
+Route::get('/paginas/editar', [PageController::class, 'edit'])->middleware('auth')->name('pages.edit');
+Route::put('/paginas/actualizar', [PageController::class, 'update'])->middleware('auth')->name('pages.update');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])

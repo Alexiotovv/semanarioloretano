@@ -158,7 +158,7 @@
             display: inline-flex;
             gap: 2rem;
             min-width: max-content;
-            animation: navbar-news-scroll 24s linear infinite;
+            animation: navbar-news-scroll 48s linear infinite;
         }
 
         .navbar-news-item {
@@ -190,6 +190,27 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0;
+            animation: header-band-slider 18s infinite;
+        }
+
+        .site-header-band .header-band-image:nth-child(1) { animation-delay: 0s; }
+        .site-header-band .header-band-image:nth-child(2) { animation-delay: 6s; }
+        .site-header-band .header-band-image:nth-child(3) { animation-delay: 12s; }
+
+        @keyframes header-band-slider {
+            0% { opacity: 0; }
+            5% { opacity: 1; }
+            30% { opacity: 1; }
+            35% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .site-header-band .header-band-image {
+                animation: none;
+                opacity: 1;
+            }
         }
 
         .site-header-band .header-band-inner {
@@ -208,7 +229,6 @@
         }
 
         .site-header-band .header-band-logo {
-            height: 70px;
             width: auto;
             border-radius: 8px;
             object-fit: cover;
@@ -268,12 +288,14 @@
     <!-- Encabezado principal -->
     @guest
         <header class="site-header-band">
-            @if($header && $header->image)
-                <img src="{{ asset('storage/' . $header->image) }}" alt="{{ $header->title }}" class="header-band-image">
-            @endif
+            @foreach([$header->image ?? null, $header->image_2 ?? null, $header->image_3 ?? null] as $slide)
+                @if($slide)
+                    <img src="{{ asset('storage/' . $slide) }}" alt="{{ $header->title }}" class="header-band-image">
+                @endif
+            @endforeach
             <div class="header-band-inner">
                 @if($header && $header->navbar_logo)
-                    <img src="{{ asset('storage/' . $header->navbar_logo) }}" alt="{{ $header->title }}" class="header-band-logo">
+                    <img src="{{ asset('storage/' . $header->navbar_logo) }}" alt="{{ $header->title }}" class="header-band-logo" style="height: {{ $header->navbar_logo_height ?? 70 }}px;">
                 @endif
                 <div class="header-band-text">
                     <h1>{{ $header->title ?? 'Semanario Loretano' }}</h1>
@@ -304,6 +326,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('news.public') }}">
                             <i class="bi bi-eye"></i> Noticias
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pages.contact') }}">
+                            <i class="bi bi-envelope"></i> Contáctenos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pages.about') }}">
+                            <i class="bi bi-info-circle"></i> Acerca de nosotros
                         </a>
                     </li>
                     @foreach($navbarSections as $navbarSection)
