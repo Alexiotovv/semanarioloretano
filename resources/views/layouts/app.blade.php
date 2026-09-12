@@ -328,16 +328,6 @@
                             <i class="bi bi-eye"></i> Noticias
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.contact') }}">
-                            <i class="bi bi-envelope"></i> Contáctenos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.about') }}">
-                            <i class="bi bi-info-circle"></i> Acerca de nosotros
-                        </a>
-                    </li>
                     @foreach($navbarSections as $navbarSection)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('sections.show', $navbarSection) }}">

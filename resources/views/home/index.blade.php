@@ -193,6 +193,10 @@
 <footer class="mt-4 py-3 rounded" style="background: #003d2b; color: white;">
     <div class="container text-center">
         <small>© {{ date('Y') }} {{ $header->title ?? 'Semanario Loretano' }} | Iquitos – Loreto | Contacto: info@semanarioloretano.com</small>
+        <div class="mt-2 d-flex justify-content-center gap-3 flex-wrap">
+            <a href="{{ route('pages.about') }}" style="color: white; text-decoration: none;">Acerca de Nosotros</a>
+            <a href="{{ route('pages.contact') }}" style="color: white; text-decoration: none;">Contáctenos</a>
+        </div>
     </div>
 </footer>
 @endsection
