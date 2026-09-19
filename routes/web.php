@@ -9,6 +9,7 @@ use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\DesignController;
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -47,6 +48,10 @@ Route::resource('advertisements', AdvertisementController::class);
 // CRUD Encabezado
 Route::get('/header/edit', [HeaderController::class, 'edit'])->name('header.edit');
 Route::put('/header/update', [HeaderController::class, 'update'])->name('header.update');
+
+// Diseño (login, navbar, footer, encabezado)
+Route::get('/design/edit', [DesignController::class, 'edit'])->middleware('auth')->name('design.edit');
+Route::put('/design/update', [DesignController::class, 'update'])->middleware('auth')->name('design.update');
 
 // CRUD Usuarios
 Route::resource('users', UserController::class)

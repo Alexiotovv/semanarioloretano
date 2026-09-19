@@ -34,12 +34,19 @@
 @endsection
 
 @section('content')
+@php
+    $loginHeader = \App\Models\Header::first();
+@endphp
 <div class="login-container">
     <div class="login-card">
         <div class="logo">
-            <i class="bi bi-newspaper" style="font-size: 3rem; color: var(--primary-green);"></i>
-            <h2>Semanario Loretano</h2>
-            <p class="text-muted">Accede al panel de administración</p>
+            @if($loginHeader && $loginHeader->login_logo)
+                <img src="{{ asset('storage/' . $loginHeader->login_logo) }}" alt="{{ $loginHeader->login_title ?? 'Logo' }}" style="max-height: 70px; margin-bottom: 10px;">
+            @else
+                <i class="bi bi-newspaper" style="font-size: 3rem; color: var(--primary-green);"></i>
+            @endif
+            <h2>{{ $loginHeader->login_title ?? 'Semanario Loretano' }}</h2>
+            <p class="text-muted">{{ $loginHeader->login_subtitle ?? 'Accede al panel de administración' }}</p>
         </div>
         
         @if ($errors->any())
@@ -71,13 +78,6 @@
             </button>
         </form>
         
-        <div class="mt-3 text-center">
-            <small class="text-muted">
-                Credenciales por defecto:<br>
-                Email: admin@admin.com<br>
-                Contraseña: password
-            </small>
-        </div>
     </div>
 </div>
 @endsection

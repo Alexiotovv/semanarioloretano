@@ -190,7 +190,7 @@
 
 
 <!-- PIE DE PÁGINA -->
-<footer class="mt-4 py-3 rounded" style="background: #003d2b; color: white;">
+<footer class="mt-4 py-3 rounded" style="background: {{ $header->footer_bg_color ?? '#003d2b' }}; color: white;">
     <div class="container text-center">
         <small>© {{ date('Y') }} {{ $header->title ?? 'Semanario Loretano' }} | Iquitos – Loreto | Contacto: info@semanarioloretano.com</small>
         <div class="mt-2 d-flex justify-content-center gap-3 flex-wrap">

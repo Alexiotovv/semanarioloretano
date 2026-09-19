@@ -98,6 +98,9 @@
             <a href="{{ route('header.edit') }}" class="sidebar-link {{ request()->routeIs('header.*') ? 'active' : '' }}">
                 <i class="bi bi-layout-text-window"></i> Encabezado
             </a>
+            <a href="{{ route('design.edit') }}" class="sidebar-link {{ request()->routeIs('design.*') ? 'active' : '' }}">
+                <i class="bi bi-palette"></i> Diseño
+            </a>
             <a href="{{ route('pages.edit') }}" class="sidebar-link {{ request()->routeIs('pages.edit') || request()->routeIs('pages.update') ? 'active' : '' }}">
                 <i class="bi bi-file-earmark-text"></i> Contáctenos / Nosotros
             </a>

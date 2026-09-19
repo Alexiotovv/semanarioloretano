@@ -27,7 +27,6 @@
         }
         
         .navbar-custom {
-            background: #003d2b;
             box-shadow: 0 2px 15px rgba(0,0,0,0.2);
             padding: 10px 0;
         }
@@ -240,25 +239,20 @@
         }
 
         .site-header-band h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(24px, 3vw, 34px);
-            color: #fff;
-            text-shadow: 0 2px 6px rgba(0,0,0,.6);
             margin: 0;
+            text-shadow: 0 2px 6px rgba(0,0,0,.6);
         }
 
         .site-header-band .header-band-subtitle {
             font-weight: 600;
             letter-spacing: 1px;
             font-size: 0.95rem;
-            color: #fff;
             text-shadow: 0 2px 6px rgba(0,0,0,.6);
             margin-top: 6px;
         }
 
         .site-header-band .header-band-description {
             font-size: 0.9rem;
-            color: #fff;
             text-shadow: 0 2px 6px rgba(0,0,0,.6);
             margin-top: 8px;
             margin-bottom: 0;
@@ -297,12 +291,17 @@
                 @if($header && $header->navbar_logo)
                     <img src="{{ asset('storage/' . $header->navbar_logo) }}" alt="{{ $header->title }}" class="header-band-logo" style="height: {{ $header->navbar_logo_height ?? 70 }}px;">
                 @endif
+                @php
+                    $headerTextColor = $header->header_text_color ?? '#ffffff';
+                    $headerFontFamily = $header->header_font_family ?? 'Playfair Display';
+                    $headerTitleFontSize = $header->header_title_font_size ?? 34;
+                @endphp
                 <div class="header-band-text">
-                    <h1>{{ $header->title ?? 'Semanario Loretano' }}</h1>
+                    <h1 style="font-family: '{{ $headerFontFamily }}', serif; font-size: clamp(24px, 3vw, {{ $headerTitleFontSize }}px); color: {{ $headerTextColor }};">{{ $header->title ?? 'Semanario Loretano' }}</h1>
                     @if($header && $header->subtitle)
-                        <p class="header-band-subtitle">{{ $header->subtitle }}</p>
+                        <p class="header-band-subtitle" style="color: {{ $headerTextColor }};">{{ $header->subtitle }}</p>
                     @endif
-                    <p class="header-band-description">
+                    <p class="header-band-description" style="color: {{ $headerTextColor }};">
                         {{ $header->description ?? 'Todas las noticias más relevantes de la ciudad de Iquitos y la región Loreto.' }}
                     </p>
                 </div>
@@ -311,7 +310,7 @@
     @endguest
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom" style="background: {{ $header->navbar_bg_color ?? '#003d2b' }};">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
