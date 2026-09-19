@@ -22,6 +22,7 @@ class DesignController extends Controller
             'login_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'navbar_bg_color' => 'nullable|string|max:20',
             'footer_bg_color' => 'nullable|string|max:20',
+            'footer_email' => 'nullable|email|max:255',
             'header_font_family' => 'nullable|string|max:100',
             'header_title_font_size' => 'nullable|integer|min:14|max:80',
             'header_text_color' => 'nullable|string|max:20',

@@ -90,6 +90,15 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="footer_email" class="form-label">Correo mostrado en el footer</label>
+                                    <input type="email" class="form-control @error('footer_email') is-invalid @enderror"
+                                           id="footer_email" name="footer_email" value="{{ old('footer_email', $header->footer_email ?? 'info@semanarioloretano.com') }}">
+                                    @error('footer_email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="tab-pane fade {{ $headerDesignHasError ? 'show active' : '' }}" id="header-pane" role="tabpanel" aria-labelledby="header-tab">
